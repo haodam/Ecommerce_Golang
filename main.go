@@ -1,9 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"gorm.io/driver/postgres"
+	"gorm.io/gorm"
+	"log"
+)
 
 func main() {
-	fmt.Println("DAM ANH HAO")
-	fmt.Println("99999999999")
+
+	dsn := "host=localhost user=gorm password=gorm dbname=gorm port=9920 sslmode=disable TimeZone=Asia/Shanghai"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+
+	if err != nil {
+		log.Fatalln(err)
+	}
+	fmt.Println(db)
 
 }
