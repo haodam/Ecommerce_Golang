@@ -26,4 +26,4 @@ type AccountTable struct {
 	Created time.Time `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
 }
 
-func (AccountTable) TableName() string { return "account" }
+func (AccountTable) TableName() string { return "accounts" }
