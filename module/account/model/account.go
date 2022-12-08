@@ -1,29 +1,19 @@
-package accountmodel
+package model
 
 import "time"
 
 type Account struct {
-	ID      int       `json:"id" gorm:"column:id"`
-	User    string    `json:"user" gorm:"column:user"`
-	Name    string    `json:"name" gorm:"column:name"`
-	Email   string    `json:"email" gorm:"column:email"`
-	Phone   int       `json:"phone" gorm:"column:phone"`
-	Address string    `json:"address" gorm:"column:address"`
-	Type    string    `json:"type" gorm:"column:type"`
-	Status  string    `json:"status" gorm:"column:status"`
-	Created time.Time `json:"created" gorm:"column:created"`
+	ID          int       `json:"id" gorm:"column:id, primaryKey, autoIncrement:true"`
+	AccountId   string    `json:"account_id" gorm:"unique"`
+	Username    string    `json:"username" gorm:"column:username"`
+	Password    string    `json:"password" gorm:"column:password"`
+	Name        string    `json:"name" gorm:"column:name"`
+	Email       string    `json:"email" gorm:"column:email"`
+	PhoneNumber string    `json:"phone_number" gorm:"column:phone_number"`
+	Address     string    `json:"address" gorm:"column:address"`
+	Type        int       `json:"type" gorm:"column:type"`
+	Status      string    `json:"status" gorm:"column:status"`
+	CreatedTime time.Time `json:"created_time" gorm:"column:created_time"`
 }
 
-type AccountTable struct {
-	ID      int       `gorm:"primaryKey"`
-	User    string    `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-	Name    string    `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-	Email   string    `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-	Phone   string    `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-	Address string    `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-	Type    string    `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-	Status  string    `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-	Created time.Time `sql:"type:CHARACTER SET utf8 COLLATE utf8_general_ci"`
-}
-
-func (AccountTable) TableName() string { return "accounts" }
+func (Account) TableName() string { return "accounts" }
