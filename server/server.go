@@ -22,8 +22,9 @@ func StartServer(appContext appctx.AppContext) {
 
 	v1 := r.Group("/v1")
 	account := v1.Group("/account")
-	//
+
 	account.POST("/create", ginaccount.CreateAccount(appContext))
+	account.DELETE("/delete", ginaccount.DeleteAccount(appContext))
 
 	r.Run()
 }
