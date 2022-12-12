@@ -2,6 +2,7 @@ package ginaccount
 
 import "C"
 import (
+	"Ecommerce_Golang/common"
 	"Ecommerce_Golang/component/appctx"
 	accountbiz "Ecommerce_Golang/module/account/biz"
 	accountstorage "Ecommerce_Golang/module/account/storage"
@@ -30,8 +31,6 @@ func DeleteAccount(ctx appctx.AppContext) func(c *gin.Context) {
 			})
 			return
 		}
-		c.JSON(http.StatusOK, gin.H{
-			"data": 1,
-		})
+		c.JSON(http.StatusOK, common.SimpleSuccessResponse(true))
 	}
 }
