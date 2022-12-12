@@ -1,4 +1,4 @@
-package model
+package accountmodel
 
 import "time"
 
