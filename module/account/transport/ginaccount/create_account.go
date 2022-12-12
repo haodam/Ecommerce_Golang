@@ -1,6 +1,7 @@
 package ginaccount
 
 import (
+	"Ecommerce_Golang/common"
 	"Ecommerce_Golang/component/appctx"
 	accountbiz "Ecommerce_Golang/module/account/biz"
 	accountmodel "Ecommerce_Golang/module/account/model"
@@ -30,8 +31,6 @@ func CreateAccount(ctx appctx.AppContext) gin.HandlerFunc {
 			return
 		}
 
-		c.JSON(http.StatusOK, gin.H{
-			"data": data,
-		})
+		c.JSON(http.StatusOK, common.SimpleSuccessResponse(data.ID))
 	}
 }
