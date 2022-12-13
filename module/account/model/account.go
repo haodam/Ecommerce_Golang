@@ -1,6 +1,10 @@
 package accountmodel
 
-import "time"
+import (
+	"errors"
+	"strings"
+	"time"
+)
 
 type Account struct {
 	ID          int       `json:"id" gorm:"column:id, primaryKey, autoIncrement:true"`
@@ -17,3 +21,16 @@ type Account struct {
 }
 
 func (Account) TableName() string { return "accounts" }
+
+func (data *Account) Validate() error {
+	data.AccountId = strings.TrimSpace(data.AccountId)
+	data.Name = strings.TrimSpace(data.Name)
+
+	if data.AccountId == "" {
+		return errors.New("account ID can not be empty")
+	}
+	if data.Name == "" {
+		return errors.New("name can not be empty")
+	}
+	return nil
+}

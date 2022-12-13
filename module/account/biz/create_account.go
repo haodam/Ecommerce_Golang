@@ -19,7 +19,7 @@ func NewCreateAccountBiz(store CreateAccountStore) *createAccountBiz {
 }
 
 func (biz *createAccountBiz) CreateAccount(ctx context.Context, data *accountmodel.Account) error {
-	if data.Name == "" {
+	if err := data.Validate(); err != nil {
 		return errors.New("name cannot be empty")
 	}
 	if err := biz.store.Create(ctx, data); err != nil {
