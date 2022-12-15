@@ -1,6 +1,8 @@
 package accountstorage
 
-import "gorm.io/gorm"
+import (
+	"gorm.io/gorm"
+)
 
 type SqlStore struct {
 	db *gorm.DB
