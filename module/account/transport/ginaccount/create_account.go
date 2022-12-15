@@ -22,9 +22,9 @@ func CreateAccount(ctx appctx.AppContext) gin.HandlerFunc {
 			return
 		}
 		store := accountstorage.NewSQLStore(db)
-		biz := accountbiz.CreateAccountStore(store)
+		biz := accountbiz.NewCreateAccountBiz(store)
 
-		if err := biz.Create(c.Request.Context(), &data); err != nil {
+		if err := biz.CreateAccount(c.Request.Context(), &data); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
 				"error": err.Error(),
 			})
