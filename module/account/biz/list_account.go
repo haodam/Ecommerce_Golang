@@ -7,15 +7,15 @@ import (
 )
 
 type ListAccountStore interface {
-	ListDataWithCondition(ctx context.Context, filter *accountmodel.Filter, paging *common.Paging,
-		moreKeys ...string) ([]accountmodel.Account, error)
+	ListDataWithCondition(ctx context.Context, filter *accountmodel.Filter,
+		paging *common.Paging, moreKeys ...string) ([]accountmodel.Account, error)
 }
 
 type listAccountBiz struct {
 	store ListAccountStore
 }
 
-func NewListRestaurantBiz(store ListAccountStore) *listAccountBiz {
+func NewListAccountBiz(store ListAccountStore) *listAccountBiz {
 	return &listAccountBiz{store: store}
 }
 
