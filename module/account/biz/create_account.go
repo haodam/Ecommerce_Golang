@@ -1,9 +1,9 @@
 package accountbiz
 
 import (
+	"Ecommerce_Golang/common"
 	accountmodel "Ecommerce_Golang/module/account/model"
 	"context"
-	"errors"
 )
 
 type CreateAccountStore interface {
@@ -18,11 +18,15 @@ func NewCreateAccountBiz(store CreateAccountStore) *createAccountBiz {
 	return &createAccountBiz{store: store}
 }
 
-func (biz *createAccountBiz) CreateAccount(ctx context.Context, data *accountmodel.Account) error {
-	if err := data.Validate(); err != nil {
-		return errors.New("name cannot be empty")
+func (biz *createAccountBiz) CreateAccount(ctx context.Context, account *accountmodel.Account) error {
+
+	accountId := account.AccountId
+	err := common.ValidateString(accountId)
+	if err != nil {
+		return err
 	}
-	if err := biz.store.Create(ctx, data); err != nil {
+
+	if err = biz.store.Create(ctx, account); err != nil {
 		return err
 	}
 	return nil

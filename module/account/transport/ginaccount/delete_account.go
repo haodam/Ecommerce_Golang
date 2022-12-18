@@ -1,15 +1,15 @@
 package ginaccount
 
-import "C"
 import (
 	"Ecommerce_Golang/common"
 	"Ecommerce_Golang/component/appctx"
 	accountbiz "Ecommerce_Golang/module/account/biz"
 	accountstorage "Ecommerce_Golang/module/account/storage"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+
+	"github.com/gin-gonic/gin"
 )
 
 func DeleteAccount(ctx appctx.AppContext) func(c *gin.Context) {

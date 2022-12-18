@@ -7,6 +7,10 @@ import (
 	"strings"
 )
 
+const (
+	EntityName = "Account"
+)
+
 type AppError struct {
 	StatusCode int    `json:"status_code"`
 	RootErr    error  `json:"-"`

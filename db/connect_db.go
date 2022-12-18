@@ -5,11 +5,12 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
+	"os"
 )
 
 func InitDB() *gorm.DB {
 
-	dsn := "host=localhost user=root password=ecommerce123 dbname=ecommercegolang port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := os.Getenv("MYSQL_CONN_STRING")
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
