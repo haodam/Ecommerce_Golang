@@ -19,13 +19,13 @@ func NewFindAccount(store FindAccountStore) *findAccountBiz {
 	return &findAccountBiz{store: store}
 }
 
-func (biz *findAccountBiz) FindAccount(ctx context.Context, id int, moreKeys ...string) (accountmodel.Account, error) {
+func (biz *findAccountBiz) FindAccount(ctx context.Context, id int, moreKeys ...string) (*accountmodel.Account, error) {
 
 	//var data accountmodel.Account
 	result, err := biz.store.FindAccountWithCondition(ctx, map[string]interface{}{"id": id})
 	if err != nil {
-		return accountmodel.Account{}, common.ErrCannotGetEntity(common.EntityName, nil)
+		return nil, common.ErrCannotGetEntity(common.EntityName, nil)
 	}
 
-	return &result, nil
+	return result, nil
 }
