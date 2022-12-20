@@ -15,7 +15,7 @@ type findAccountBiz struct {
 	store FindAccountStore
 }
 
-func NewFindAccount(store FindAccountStore) *findAccountBiz {
+func NewFindAccountBiz(store FindAccountStore) *findAccountBiz {
 	return &findAccountBiz{store: store}
 }
 

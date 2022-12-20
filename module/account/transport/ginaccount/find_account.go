@@ -27,7 +27,7 @@ func FindAccount(ctx appctx.AppContext) func(c *gin.Context) {
 		}
 
 		store := accountstorage.NewSQLStore(db)
-		biz := accountbiz.NewFindAccount(store)
+		biz := accountbiz.NewFindAccountBiz(store)
 
 		result, err := biz.FindAccount(c.Request.Context(), id)
 		if err != nil {
