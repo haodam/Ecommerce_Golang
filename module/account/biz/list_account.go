@@ -24,7 +24,7 @@ func (biz *listAccountBiz) ListAccount(ctx context.Context, filter *accountmodel
 
 	result, err := biz.store.ListDataWithCondition(ctx, filter, paging)
 	if err != nil {
-		return nil, nil
+		return nil, common.ErrCannotListEntity(common.EntityName, nil)
 	}
 
 	return result, nil
