@@ -5,8 +5,13 @@ import (
 	"context"
 )
 
+//func (s *SqlStore) ListDataWithCondition(ctx context.Context, filter *accountmodel.Filter,
+//	paging *common.Paging, moreKeys ...string) ([]accountmodel.Account, error) {
+//	return nil, nil
+//}
+
 func (s *SqlStore) FindAccountWithCondition(ctx context.Context, condition map[string]interface{},
-	morekeys ...string) (*accountmodel.Account, error) {
+	moreKeys ...string) (*accountmodel.Account, error) {
 
 	var data accountmodel.Account
 	if err := s.db.Where(condition).First(&data).Error; err != nil {
