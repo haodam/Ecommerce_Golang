@@ -14,7 +14,7 @@ type Account struct {
 	PhoneNumber string    `json:"phone_number" gorm:"column:phone_number"`
 	Address     string    `json:"address" gorm:"column:address"`
 	Type        int       `json:"type" gorm:"column:type"`
-	Status      string    `json:"status" gorm:"column:status"`
+	Status      int       `json:"status" gorm:"column:status"`
 	CreatedTime time.Time `json:"created_time" gorm:"column:created_time"`
 }
 
