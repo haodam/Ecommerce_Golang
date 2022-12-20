@@ -7,7 +7,10 @@ import (
 )
 
 func main() {
+	
 	DB := db.InitDB()
+
+	DB = DB.Debug()
 
 	appContext := appctx.NewAppContext(DB)
 
