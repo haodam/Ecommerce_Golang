@@ -15,7 +15,7 @@ func StartServer(appContext appctx.AppContext) {
 	//r.Use(middleware.Recover(appContext))
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
+			"message": "welcome my API ecommerce",
 			"status":  1,
 		})
 	})
@@ -25,7 +25,7 @@ func StartServer(appContext appctx.AppContext) {
 
 	account.POST("/create", ginaccount.CreateAccount(appContext))
 	account.DELETE("/delete", ginaccount.DeleteAccount(appContext))
-	//account.GET("/list", ginaccount.ListAccount(appContext))
+	account.GET("/list", ginaccount.ListAccount(appContext))
 	account.GET("/find", ginaccount.FindAccount(appContext))
 
 	r.Run()
