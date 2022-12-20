@@ -26,7 +26,7 @@ func DeleteAccount(ctx appctx.AppContext) func(c *gin.Context) {
 		}
 
 		store := accountstorage.NewSQLStore(DB)
-		biz := accountbiz.NewDeleteAccount(store)
+		biz := accountbiz.NewDeleteAccountBiz(store)
 
 		if err := biz.DeleteAccount(c.Request.Context(), id); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
