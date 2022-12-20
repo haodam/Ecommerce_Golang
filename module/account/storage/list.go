@@ -6,20 +6,35 @@ import (
 	"context"
 )
 
-func (s *SqlStore) ListAccountWithCondition(ctx context.Context, filter *accountmodel.Filter, paging *common.Paging,
-	morekeys ...string) ([]accountmodel.Account, error) {
+func (s *SqlStore) ListDataWithCondition(ctx context.Context, filter *accountmodel.Filter,
+	paging *common.Paging, moreKeys ...string) ([]accountmodel.Account, error) {
 
 	var result []accountmodel.Account
-	db := s.db.Where("status in (1)")
+	db := s.db.Table(accountmodel.Account{}.TableName()).Where("status in (1)")
 
 	if f := filter; f != nil {
 		if f.AccountId > 0 {
 			db = db.Where("account_id = ?", f.AccountId)
 		}
+		//if len(f.Status) > 0 {
+		//	db = db.Where("status in (?)", f.Status)
+		//}
+	}
+	//fmt.Println("aaaa")
+
+	if err := db.Count(&paging.Total).Error; err != nil {
+		return nil, common.ErrDB(err)
 	}
 
-	if err := s.db.Where(&result).Error; err != nil {
-		return nil, err
+	offset := (paging.Page - 1) * paging.Limit
+	if err := db.Offset(offset).Limit(paging.Limit).
+		Order("id desc").
+		Find(&result).Error; err != nil {
+		return nil, common.ErrDB(err)
 	}
+
+	//if err := s.db.Find(&result).Error; err != nil {
+	//	return nil, err
+	//}
 	return result, nil
 }
