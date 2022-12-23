@@ -19,3 +19,19 @@ type Account struct {
 }
 
 func (Account) TableName() string { return "accounts" }
+
+type AccountCreate struct {
+	Username string `json:"username" gorm:"column:username"`
+	Name     string `json:"name" gorm:"column:name"`
+	Password string `json:"password" gorm:"column:password"`
+}
+
+func (AccountCreate) TableName() string { return Account{}.TableName() }
+
+type AccountUpdate struct {
+	Username *string `json:"username" gorm:"column:username"`
+	Name     *string `json:"name" gorm:"column:name"`
+	Password *string `json:"password" gorm:"column:password"`
+}
+
+func (AccountUpdate) TableName() string { return Account{}.TableName() }
